@@ -1,44 +1,51 @@
 #include "Contact.hpp"
 
-void Contact::setAll(std::string _firstname, std::string _lastname, std::string _nickname, std::string _phonenumber, std::string _darkestsecret)
+void    Contact::setFirst(std::string _firstname)
 {
-    if (!_firstname.empty()) firstname = _firstname;
-    if (!_lastname.empty()) lastname = _lastname;
-    if (!_nickname.empty()) nickname = _nickname;
-    if (!_phonenumber.empty()) phonenumber = _phonenumber;
-    if (!_darkestsecret.empty()) darkestsecret = _darkestsecret;
+   this->firstname = _firstname;
 }
 
-void Contact::printPrivate()
+void    Contact::setLast(std::string _lastname)
 {
-    std::cout << "Your first name: " << firstname << std::endl;
-    std::cout << "Your last name: " << lastname << std::endl;
-    std::cout << "Your nickname: " << nickname << std::endl;
-    std::cout << "Your phone number: " << phonenumber << std::endl;
-    std::cout << "Your darkest secret: " << darkestsecret << std::endl;
+    this->lastname = _lastname;
 }
 
-void Contact::getAll()
+void    Contact::setNickname(std::string _nickname)
 {
-    std::string input;
+    this->nickname = _nickname;
+}
 
-    std::cout << "First name:" << std::endl;
-    getline(std::cin, input);
-    setAll(input, "", "", "", "");
+void    Contact::setPhonenumber(std::string _phonenumber)
+{
+    this->phonenumber = _phonenumber;
+}
 
-    std::cout << "Last name:" << std::endl;
-    getline(std::cin, input);
-    setAll("", input, "", "", "");
+void    Contact::setDarkestsecret(std::string _darkestsecret)
+{
+    this->darkestsecret = _darkestsecret;
+}
 
-    std::cout << "Nickname:" << std::endl;
-    getline(std::cin, input);
-    setAll("", "", input, "", "");
+std::string Contact::returnFirst()
+{
+    return this->firstname;
+}
 
-    std::cout << "Phone number:" << std::endl;
-    getline(std::cin, input);
-    setAll("", "", "", input, "");
+std::string Contact::returnLast()
+{
+    return this->lastname;
+}
 
-    std::cout << "Darkest secret:" << std::endl;
-    getline(std::cin, input);
-    setAll("", "", "", "", input);
+std::string Contact::returnNickname()
+{
+    return this->nickname;
+}
+
+std::string Contact::returnPhonenumber()
+{
+    return this->phonenumber;
+}
+
+std::string Contact::returnDarkestsecret()
+{
+    return this->darkestsecret;
 }

@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <string>
 #include <algorithm>
+#include <cctype>
 
 class Contact{
     private:
@@ -16,8 +17,15 @@ class Contact{
     std::string darkestsecret;
 
     public:
-    void    setAll(std::string _firstname, std::string _lastname, std::string _nickname, std::string _phonenumber, std::string _darkestsecret);
-    void    printPrivate();
-    void    getAll();
+    void    setFirst(std::string _firstname);
+    void    setLast(std::string _lastname);
+    void    setNickname(std::string _nickname);
+    void    setPhonenumber(std::string _phonenumber);
+    void    setDarkestsecret(std::string _darkestsecret);
+    std::string    returnFirst();
+    std::string    returnLast();
+    std::string    returnNickname();
+    std::string    returnPhonenumber();
+    std::string    returnDarkestsecret();
 };
 #endif
