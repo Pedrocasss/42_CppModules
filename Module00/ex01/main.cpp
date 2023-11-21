@@ -18,7 +18,7 @@ int main(void)
 	std::string	input;
 
 	system("clear");
-	while (1)
+	while (!std::cin.eof())
 	{
 		std::cout << "Write a valid command(ADD, SEARCH or EXIT)" << std::endl;
 		getline(std::cin, input);
@@ -28,6 +28,5 @@ int main(void)
 			phonebook.printTable();
 		if (input == "EXIT")
 			break ;
-		std::cin.clear();
 	}
 }

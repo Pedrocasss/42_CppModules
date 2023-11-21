@@ -32,7 +32,7 @@ bool checkWhiteSpaces(std::string& input) {
     return true;
 }
 
-bool isNumber(const std::string& str) {
+bool isNumber(std::string const& str) {
     for (std::string::const_iterator it = str.begin(); it != str.end(); ++it) {
         if (*it < '0' || *it > '9') {
             return false;
@@ -71,7 +71,7 @@ void    Phonebook::addAll(){
     contacts[index].setNickname(input);
     std::cout << "Phone number: "<< std::endl;
     getline(std::cin, input);
-    if (input.size() == 0 || (checkWhiteSpaces(input) && !isNumber(input)))
+    if (input.size() == 0 || (checkWhiteSpaces(input) || !isNumber(input)))
     {
         std::cout << "Error. Try again."<< std::endl;
         return ;
