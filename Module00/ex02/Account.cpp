@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Account.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psoares- <psoares-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/23 16:00:52 by psoares-          #+#    #+#             */
+/*   Updated: 2023/11/23 16:00:53 by psoares-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Account.hpp"
 #include <iostream>
 #include <ctime>
@@ -19,6 +31,10 @@ Account::Account(int initial_deposit)
 	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";created\n";
 }
 
+Account::Account( void )
+{
+
+}
 Account::~Account()
 {
 	_nbAccounts--;
