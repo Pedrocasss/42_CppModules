@@ -7,7 +7,7 @@ Zombie::Zombie(void)
 
 Zombie::~Zombie(void) 
 {
-    std::cout<<"Destructor here: " << this->_name << " was deleted\n";
+    std::cout<<"Destructor here: " << this->_name << " was deleted" << std::endl;
 }
 
 void	Zombie::announce(void)
