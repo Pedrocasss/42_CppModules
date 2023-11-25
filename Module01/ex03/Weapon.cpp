@@ -3,16 +3,16 @@
 Weapon::Weapon(std::string type)
 {
     this->setType(type);
-    std::cout << "Weapon constructor here!" << std::endl;
+    //std::cout << "Weapon constructor here!" << std::endl;
 
 }
 
 Weapon::~Weapon(void)
 {
-    std::cout << "Weapon destructor here!" << std::endl;
+    //std::cout << "Weapon destructor here!" << std::endl;
 }
 
-std::string const &	Weapon::getType(void)
+const std::string &Weapon::getType(void)
 {
 	return this->_type;
 }

@@ -1,0 +1,7 @@
+Uso a referencia na class HumanA apenas porque sempre vai estar sempre armado, então a referencia faz com que sempre esteja armado.
+
+
+Uso o pointer na class HumanB porque possibilita me a alteraçao de se quero o armado ou não.
+
+
+Ótimo exercicio para aplicar pointers e referencias.
