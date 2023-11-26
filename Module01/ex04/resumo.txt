@@ -1,0 +1,35 @@
+Para criar a funcao replace, usei 3 funcoes: erase, insert, find.
+
+
+Find-> a funcao procura o que queremos, e pode receber dois argumentos:
+    o primeiro argumento e a substring que queremos procurar na substring.
+    o segundo argumento e a posicao a partir da qual deve comecar a procurar.
+erase-> A função erase remove caracteres da string que queremos:
+    o primeiro argumento e a posicao por onde ele comeca a remover.
+    o segundo argumento e ate onde ele vai remover.
+insert-> A função insert insere caracteres ou substrings em uma string na posição especificada.
+
+
+
+O que e <std::string::npos>?
+
+<std::string::npos> é um valor constante especial que representa a posição inválida ou "não encontrada" em uma string em C++. Especificamente, é o valor retornado por várias funções da classe std::string quando uma operação de busca não encontra a substring ou caractere desejado.
+Em outras palavras, std::string::npos é um valor de size_t que representa a posição inválida ou a ausência de uma posição válida em uma string.
+Por exemplo, a função find da classe std::string retorna std::string::npos se a substring não for encontrada.
+
+
+#include <fstream>
+ifstream-> (input file stream) para ler os arquivos.
+ofstream->  (output file stream) para escreve nos arquivos.
+
+#include <sstream>
+<std::ostringstream> -> Faz parte da biblioteca padrão do C++ e é uma classe que representa uma "string stream de saída". 
+Essa classe é derivada de std::ostream e é usada para construir strings da mesma maneira que nos construimos em uma saída para std::cout. 
+Mas, em vez de imprimir para a saída padrão, nos estamos a construir uma string em memória.
+Neste caso, ao fazer isto : outStringStream << in_file.rdbuf(); faz com que ele leia todo o infile.
+Para depois termos acesso a essa string, criamos uma string <content> e dizemos que ela sera igual ao outStringStream.str();
+Isto faz com que nos consigamos buscar a string que foi posta na memoria e em seguida alocada pela std::string content e depois libertada (sim a std::string tem isso por default).
+
+
+
+std::cerr-> mesma coisa que o std::cout, mas ira imprimir para o standart error.

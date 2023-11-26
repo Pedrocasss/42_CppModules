@@ -5,3 +5,4 @@ Uso o pointer na class HumanB porque possibilita me a alteraçao de se quero o a
 
 
 Ótimo exercicio para aplicar pointers e referencias.
+Referencias sao pointers estaticos!!!!!!!
