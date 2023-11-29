@@ -8,6 +8,7 @@ class Fixed
     private:
     int number;
     static const int bits = 8;
+    
     public:
     Fixed();    //constructor
     ~Fixed();   //destructor
