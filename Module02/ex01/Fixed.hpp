@@ -10,6 +10,8 @@ class Fixed
     static const int fracBits = 8;
 
     public:
+    Fixed();
+    ~Fixed();
     Fixed(const int value);
     Fixed(const float value);
     float toFloat( void ) const;
