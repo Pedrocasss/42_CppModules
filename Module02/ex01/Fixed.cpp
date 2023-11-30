@@ -36,6 +36,7 @@ Fixed &Fixed::operator=(const Fixed &other)
         this->setRawBits(other.getRawBits());
     return *this;
 }
+
 int Fixed::getRawBits(void) const
 {
     return number;
@@ -55,7 +56,7 @@ int		Fixed::toInt ( void ) const
 	return this->getRawBits() >> fracBits;
 }
 
-//overload
+//overload operator
 std::ostream &	operator<<(std::ostream & out, Fixed const & number)
 {
 	out << number.toFloat();

@@ -1,5 +1,5 @@
 #include "Fixed.hpp"
-
+// sem o nosso operator overload nao conseguiriamos enviar os objetos para o std::cout!
 int main( void ) 
 {
     Fixed a;
