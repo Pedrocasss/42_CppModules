@@ -51,6 +51,7 @@ float		Fixed::toFloat(void) const
 {
 	return (float)this->getRawBits() / (1 << fracBits);
 }
+
 int		Fixed::toInt ( void ) const
 {
 	return this->getRawBits() >> fracBits;
