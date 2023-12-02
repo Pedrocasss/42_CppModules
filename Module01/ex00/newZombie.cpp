@@ -3,7 +3,7 @@
 
 /*
 Esta funçao retorna um ponteiro para um objeto do tipo Zombie.
-A variavel zomb aloco diretamente na heap com a funçao new.
+A variavel zomb aloca diretamente na heap com a funçao new.
 */
 Zombie* newZombie( std::string name )
 {
