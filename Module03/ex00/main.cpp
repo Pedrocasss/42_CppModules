@@ -13,5 +13,4 @@ int main()
 	Pedro.beRepaired(10);
 	std::cout << "Health points: " << Pedro.getHP() << std::endl;
 	Pedro.getEnergy();
-	return (0);
 }
