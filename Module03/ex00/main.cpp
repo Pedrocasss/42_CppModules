@@ -2,7 +2,7 @@
 
 #include "ClapTrap.hpp"
 
-int main()
+int main(void)
 {
 	ClapTrap Pedro("Pedro");
 
