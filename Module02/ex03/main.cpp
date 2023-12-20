@@ -8,7 +8,7 @@ int	main ( void )
 	Point	b(7.0f, -3.0f);
 	Point	c ( 2.0f, 8.0f );
 
-	//std::cout << "Check it out at https://www.easycalculation.com/analytical/draw-triangle.php" << std::endl << std::endl;
+	//std::cout << "Check it out at https://www.geogebra.org/calculator" << std::endl << std::endl;
 
 	Point	Tests[5];
 	Tests[0] = Point( 2.0f, -4.0f );

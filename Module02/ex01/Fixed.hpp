@@ -16,7 +16,7 @@ class Fixed
     Fixed(const int value);
     Fixed(const float value);
     Fixed(const Fixed &copy);
-    Fixed &operator=(const Fixed &other); //Copy assignment operator
+    Fixed &operator=(const Fixed &other);
     int getRawBits( void ) const;
     void setRawBits( int const raw );
     float toFloat( void ) const;
