@@ -11,7 +11,7 @@ ScavTrap::ScavTrap(std::string _name) : ClapTrap(_name)
     setAttackDamage(20);
     setEnergy(50);
     setHP(100);
-    displayStats();
+    //displayStats();
 }
 
 void ScavTrap::displayStats()

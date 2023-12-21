@@ -11,7 +11,7 @@ FragTrap::FragTrap(std::string _name) : ClapTrap(_name)
     setAttackDamage(30);
     setEnergy(100);
     setHP(100);
-    displayStats();
+    //displayStats();
 }
 
 FragTrap::FragTrap(const FragTrap& other) : ClapTrap("FragTrap")
