@@ -1,7 +1,7 @@
-NAME = AAnimal
+NAME = Game
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -g -std=c++98
-SRC = WrongAnimal.cpp main.cpp WrongCat.cpp Cat.cpp Dog.cpp AAnimal.cpp Brain.cpp
+SRC = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = phonebook
-CXX = c++
+CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -g -std=c++98
 SRC = main.cpp \
 		Contact.cpp \
