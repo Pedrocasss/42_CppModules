@@ -2,7 +2,8 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 
-int main() {
+int main()
+{
   std::cout << "Enter a grade: ";
   int grade;
   std::cin >> grade;
