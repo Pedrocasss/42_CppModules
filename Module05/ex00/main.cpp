@@ -1,8 +1,6 @@
-
 #include "Bureaucrat.hpp"
-#include <iostream>
 
-int main()
+int main(void)
 {
   std::cout << "Enter a grade: ";
   int grade;
@@ -30,4 +28,5 @@ int main()
   {
     std::cerr << "Caught exception: " << exception.what() << std::endl;
   }
+  return 0;
 }
