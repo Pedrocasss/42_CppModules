@@ -80,6 +80,10 @@ std::ostream &operator<<(std::ostream &os, AForm &form)
 
 void AForm::execute(Bureaucrat const & executor) const
 {
-    if (executor.getGrade() > this->_gradeToExecute)
-        throw GradeTooLowException();
+    if (!getSigned())
+        throw std::runtime_error("Form not signed");
+    if (executor.getGrade() > getGradeToExecute())
+        throw std::runtime_error("Grade too low");
+    (void) (executor);
+    std::cout << "Form " << getName() << " executed" << std::endl;
 }
