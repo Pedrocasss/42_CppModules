@@ -49,10 +49,9 @@ void ScalarConverter::convert(const std::string &input)
         processValues(static_cast<double>(input[0]));
         return;
     }
-    
     if (input[input.size() - 1] == 'f')
     {
-        std::string floatStr = input.substr(0, input.size() - 1); // remove the 'f'
+        std::string floatStr = input.substr(0, input.size() - 1);
         std::stringstream ssFloat(floatStr);
         float floatVal;
         if (ssFloat >> floatVal && ssFloat.eof())
@@ -61,8 +60,6 @@ void ScalarConverter::convert(const std::string &input)
             return;
         }
     }
-
-    // Try to convert to int
     std::stringstream ssInt(input);
     int intVal;
     if (ssInt >> intVal && ssInt.eof())
@@ -70,8 +67,6 @@ void ScalarConverter::convert(const std::string &input)
         processValues(static_cast<double>(intVal));
         return;
     }
-
-    // Try to convert to double
     std::stringstream ssDouble(input);
     double doubleVal;
     if (ssDouble >> doubleVal && ssDouble.eof())
@@ -79,8 +74,6 @@ void ScalarConverter::convert(const std::string &input)
         processValues(doubleVal);
         return;
     }
-
-    // If none of the above, then it's invalid input
     std::cout << "char: impossible" << std::endl;
     std::cout << "int: impossible" << std::endl;
     std::cout << "float: nanf" << std::endl;
@@ -126,7 +119,7 @@ void ScalarConverter::toFloat(double value)
         std::cout << "float: nanf" << std::endl;
         return;
     }
-    std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(6) << static_cast<float>(value) << "f" << std::endl;
 }
 
 void ScalarConverter::toDouble(double value)
@@ -136,12 +129,11 @@ void ScalarConverter::toDouble(double value)
         std::cout << "double: nan" << std::endl;
         return;
     }
-    std::cout << "double: " << value << std::endl;
+    std::cout << "double: " << std::fixed << std::setprecision(15) << static_cast<double>(value) << "f" << std::endl;
 }
 
 std::string ScalarConverter::detectType(const std::string &input)
 {
-    // Check for special floating point values
     if (input == "inff" || input == "nanf" || input == "-inff")
     {
         return "float";
@@ -150,14 +142,10 @@ std::string ScalarConverter::detectType(const std::string &input)
 	{
 		return "double";
 	}
-
-    // Check for char
     if (input.length() == 1 && isprint(input[0]) && !isdigit(input[0]))
     {
         return "char";
     }
-
-    // Check for float
     if (input[input.size() - 1] == 'f')
     {
         std::string floatStr = input.substr(0, input.size() - 1); // remove the 'f'
@@ -168,23 +156,17 @@ std::string ScalarConverter::detectType(const std::string &input)
             return "float";
         }
     }
-
-    // Check for int
     std::stringstream ssInt(input);
     int intVal;
     if (ssInt >> intVal && ssInt.eof())
     {
         return "int";
     }
-
-    // Check for double
     std::stringstream ssDouble(input);
     double doubleVal;
     if (ssDouble >> doubleVal && ssDouble.eof())
     {
         return "double";
     }
-
-    // If none of the above, then it's invalid input
     return "invalid";
 }
