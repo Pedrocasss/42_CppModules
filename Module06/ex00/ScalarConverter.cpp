@@ -29,6 +29,14 @@ void ScalarConverter::convert(const std::string &input)
 
 	std::cout << "Type: " << type << std::endl;
 
+    if (type == "invalid")
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: nanf" << std::endl;
+        std::cout << "double: nan" << std::endl;
+        return;
+    }
     if (input == "inf" || input == "inff")
     {
         processValues(std::numeric_limits<double>::infinity());
@@ -74,10 +82,6 @@ void ScalarConverter::convert(const std::string &input)
         processValues(doubleVal);
         return;
     }
-    std::cout << "char: impossible" << std::endl;
-    std::cout << "int: impossible" << std::endl;
-    std::cout << "float: nanf" << std::endl;
-    std::cout << "double: nan" << std::endl;
 }
 
 void ScalarConverter::processValues(double value)
@@ -129,11 +133,24 @@ void ScalarConverter::toDouble(double value)
         std::cout << "double: nan" << std::endl;
         return;
     }
-    std::cout << "double: " << std::fixed << std::setprecision(15) << static_cast<double>(value) << "f" << std::endl;
+    std::cout << "double: " << std::fixed << std::setprecision(6) << static_cast<float>(value) << std::endl;
 }
 
 std::string ScalarConverter::detectType(const std::string &input)
 {
+    
+    for (size_t i = 0; input[i]; i++)
+    {
+        if (input[i] == '.')
+        {
+            while(input[i])
+            {
+                i++;
+                if (input[i] == 'f' && !isdigit(input[i-1]))
+                    return "invalid";       
+            }
+        }
+    }
     if (input == "inff" || input == "nanf" || input == "-inff")
     {
         return "float";
@@ -148,7 +165,7 @@ std::string ScalarConverter::detectType(const std::string &input)
     }
     if (input[input.size() - 1] == 'f')
     {
-        std::string floatStr = input.substr(0, input.size() - 1); // remove the 'f'
+        std::string floatStr = input.substr(0, input.size() - 1);
         std::stringstream ssFloat(floatStr);
         float floatVal;
         if (ssFloat >> floatVal && ssFloat.eof())
