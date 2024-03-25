@@ -2,7 +2,6 @@
 
 int main()
 {
-    // Create a Data object
     Data data;
     data.n = 42;
     data.str = "Pedrocas, o rei!";
