@@ -2,11 +2,17 @@
 #define ITER_HPP
 
 #include <iostream>
-template <typename T, typename F>
 
-void    iter(T *array, int length, F f)
+template <typename T>
+void    iter(T *array, int length, void(*function)(T &element))
 {
     for (int i = 0; i < length; i++)
-        f(array[i]);
+        function(array[i]);
+}
+
+template <typename T>
+void    print(T &element)
+{
+    std::cout << element << std::endl;
 }
 #endif
