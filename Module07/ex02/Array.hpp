@@ -6,11 +6,20 @@
 template <typename T>
 class Array
 {
+    private:
+        T * _array;
+        unsigned int _size;
     public:
         Array(void) : _array(NULL), _size(0) {}
         Array(unsigned int n) : _array(new T[n]), _size(n) {}
-        Array(Array const & src) : _array(NULL), _size(0) { *this = src; }
-        ~Array(void) { delete [] _array; }
+        Array(Array const & src) : _array(NULL), _size(0)
+        { 
+            *this = src;
+        }
+        ~Array(void) 
+        { 
+            delete [] _array; 
+        }
 
         Array & operator=(Array const & rhs)
         {
@@ -25,10 +34,26 @@ class Array
             return *this;
         }
 
-        T & operator[](unsigned int i)
+        class outOfBounds: public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+                {
+					return ("Array index is out of bounds");
+                };
+		};
+
+        T & operator[](int i)
         {
-            if (i >= _size)
-                throw std::exception();
+            if (i >= static_cast <int> (_size) || i < 0)
+                throw outOfBounds();
+            return _array[i];
+        }
+
+        T const & operator[](int i) const
+        {
+            if (i >= static_cast <int> (_size) || i < 0)
+                throw outOfBounds();
             return _array[i];
         }
         unsigned int size(void) const
@@ -36,9 +61,6 @@ class Array
             return _size; 
         }
 
-    private:
-        T * _array;
-        unsigned int _size;
 };
 
 
