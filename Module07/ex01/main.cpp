@@ -7,7 +7,7 @@ int main(void)
     std::string string_array[] = {"one", "two", "three", "four", "five"};
 
     std::cout << "Int array:" << std::endl;
-    ::iter(int_array, 5, print <int>);
+    ::iter(int_array, 5, print <const int>);
     std::cout << "Char array:" << std::endl;
     ::iter(char_array, 5, print <char>);
     std::cout << "String array:" << std::endl;
