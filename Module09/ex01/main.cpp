@@ -1,4 +1,5 @@
 #include "RPN.hpp"
+
 int	main(int argc, char **argv)
 {
 	if (argc != 2)
@@ -6,12 +7,7 @@ int	main(int argc, char **argv)
 		std::cout << "Example of usage : ./RPN '1 2 3 + *''" << std::endl;
 		return 0;
 	}
-	
 	if (checkLine(argv[1]))
-	{
-		std::cout << "Error: invalid input" << std::endl;
-		return 0;
-	}
-    
+		error("Invalid input");
 	calculate(argv[1]);
 }
