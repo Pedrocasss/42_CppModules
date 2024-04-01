@@ -54,6 +54,10 @@ void Span::addNumbers(int start, int end)
     }
 }
 
+#include <algorithm>
+#include <iterator>
+#include <vector>
+
 int Span::shortestSpan(void)
 {
     if (_v.size() < 2)
@@ -73,9 +77,7 @@ int Span::longestSpan(void)
 {
     if (_v.size() < 2)
         throw NoSpanException();
-    std::vector<int> v = _v;
-    std::sort(v.begin(), v.end());
-    return v[v.size() - 1] - v[0];
+    return *std::max_element(_v.begin(), _v.end()) - *std::min_element(_v.begin(), _v.end());
 }
 
 const char* Span::NoSpanException::what() const throw()
