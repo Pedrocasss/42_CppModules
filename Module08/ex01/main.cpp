@@ -53,14 +53,11 @@ int main()
         std::cerr << e.what() << std::endl;
     }
     std::cout << "-------------------------" << std::endl;
-    std::cout << "Test with 10001 numbers and 1000 capacity" << std::endl;
+    std::cout << "Test with 10000 numbers and 1000 capacity" << std::endl;
     Span sp5(1000);
     try
     {
-        for(int i = 0; i < 10001; ++i)
-        {
-            sp5.addNumber(rand());
-        }
+        sp5.addNumbers(10, 10010);
         sp5.showNumbers();
         std::cout << "Shortest span: " << sp5.shortestSpan() << std::endl;
         std::cout << "Longest span: " << sp5.longestSpan() << std::endl;
@@ -69,5 +66,20 @@ int main()
     {
         std::cerr << e.what() << std::endl;
     }
-    return 0;
+    std::cout << "-------------------------" << std::endl;
+    std::cout << "Test with some numbers with improved addNumber()" << std::endl;
+    try
+    {
+        Span sp6(5);
+        sp6.addNumbers(1, 5);
+        sp6.showNumbers();
+        std::cout << "Shortest span: " << sp6.shortestSpan() << std::endl;
+        std::cout << "Longest span: " << sp6.longestSpan() << std::endl;
+
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
 }

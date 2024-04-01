@@ -40,12 +40,18 @@ void Span::addNumber(int n)
         throw Span::outOfRangeException();
 }
 
-void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+void Span::addNumbers(int start, int end)
 {
-    if (_v.size() + std::distance(begin, end) <= _n)
-        _v.insert(_v.end(), begin, end);
-    else
+    if (end < start)
+        throw std::invalid_argument("End cannot be less than start");
+
+    int rangeSize = end - start + 1;
+    if (_v.size() + rangeSize > _n)
         throw Span::outOfRangeException();
+
+    for (int i = start; i <= end; ++i) {
+        _v.push_back(i);
+    }
 }
 
 int Span::shortestSpan(void)
