@@ -10,83 +10,97 @@
 #include <iomanip>
 #include <string>
 #include <sstream>
-
+#include <algorithm>
 
 class PmergeMe
 {
-    public:
-        PmergeMe();
-        ~PmergeMe();
-        PmergeMe(const PmergeMe &src);
-        PmergeMe &operator=(const PmergeMe &src);
-        PmergeMe(char **argv);
-        template <typename T> void printContainer(const T &container) {
-            for (typename T::const_iterator it = container.begin(); it != container.end();
-                ++it)
-                std::cout << *it << ' ';
-            std::cout << std::endl;
-        }
-        template <typename T> double timeAndSort(T &container)
-        {
-            clock_t start = clock();
-            mergeInsertSort(container, 0, container.size() - 1);
-            return (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-        }
+public:
+    PmergeMe();
+    ~PmergeMe();
+    PmergeMe(const PmergeMe &src);
+    PmergeMe &operator=(const PmergeMe &src);
+    PmergeMe(char **argv);
 
-        template <typename T> void mergeInsertSort(T &container, int left, int right) {
-            if (left < right) {
-                int mid = left + (right - left) / 2;
-                mergeInsertSort(container, left, mid);
-                mergeInsertSort(container, mid + 1, right);
-                merge(container, left, mid, right);
-            }
-        }
+    template <typename T>
+    void printContainer(const T &container)
+    {
+        for (typename T::const_iterator it = container.begin(); it != container.end(); ++it)
+            std::cout << *it << ' ';
+        std::cout << std::endl;
+    }
 
-        template <typename T> void merge(T &container, int left, int mid, int right)
-        {
-            int i, j, k;
-            int number1 = mid - left + 1;
-            int number2 = right - mid;
+    template <typename T>
+    double timeAndSort(T &container)
+    {
+        clock_t start = clock();
+        fordJohnsonSort(container, 0, container.size() - 1);
+        return (double)(clock() - start) / CLOCKS_PER_SEC * 1000000;
+    }
 
-            T L(number1), R(number2);
-
-            for (i = 0; i < number1; i++)
-                L[i] = container[left + i];
-            for (j = 0; j < number2; j++)
-                R[j] = container[mid + 1 + j];
-            i = 0;
-            j = 0;
-            k = left;
-            while (i < number1 && j < number2)
+    template <typename T>
+void fordJohnsonSort(T &container, int left, int right)
+{
+    if (left < right)
+    {
+        // Divide o array em pares e ordena cada par
+            for (int i = left; i < right; i += 1)
             {
-                if (L[i] <= R[j])
+                if (container[i] > container[i + 1])
                 {
-                    container[k] = L[i];
-                    i++;
+                    std::swap(container[i], container[i + 1]);
+                }
+            }
+
+            // Aplica recursivamente para os pares maiores
+            int mid = (left + right) / 2;
+            fordJohnsonSort(container, left, mid);
+            fordJohnsonSort(container, mid + 1, right);
+
+            // Mescla os pares ordenados
+            std::vector<int> merged;
+            int i = left, j = mid + 1;
+            while (i <= mid && j <= right)
+            {
+                if (container[i] <= container[j])
+                {
+                    merged.push_back(container[i]);
+                    i += 1;
                 }
                 else
                 {
-                    container[k] = R[j];
-                    j++;
+                    merged.push_back(container[j]);
+                    j += 1;
                 }
-                k++;
             }
-            while (i < number1)
+            while (i <= mid)
             {
-                container[k] = L[i];
-                i++;
-                k++;
+                merged.push_back(container[i]);
+                i += 1;
             }
-            while (j < number2)
+            while (j <= right)
             {
-                container[k] = R[j];
-                j++;
-                k++;
+                merged.push_back(container[j]);
+                j += 1;
+            }
+            for (int k = 0; k < static_cast<int>(merged.size()); ++k)
+            {
+                container[left + k] = merged[k];
+            }
+
+            // Insere os elementos restantes na sequência ordenada final em binário
+            for (int i = left + 1; i <= right; i += 1)
+            {
+                typename T::iterator insertionPoint = std::lower_bound(container.begin() + left, container.begin() + i, container[i]);
+                std::rotate(insertionPoint, container.begin() + i, container.begin() + i + 1);
+
             }
         }
-        private:
-            std::vector<int> vector;
-            std::deque<int> deque;
+    }
+
+
+private:
+    std::vector<int> vector;
+    std::deque<int> deque;
 };
 
 #endif

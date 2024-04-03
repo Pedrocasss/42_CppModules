@@ -54,10 +54,6 @@ void Span::addNumbers(int start, int end)
     }
 }
 
-#include <algorithm>
-#include <iterator>
-#include <vector>
-
 int Span::shortestSpan(void)
 {
     if (_v.size() < 2)
