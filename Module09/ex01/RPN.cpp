@@ -92,13 +92,25 @@ void	calculate(std::string line)
 		if (isdigit(line[i]))
 			stack.push(line[i] - '0');
 		if (line[i] == '*' && mul(stack))
+		{
             error("invalid multiplication");
+			return ;
+		}
 		if (line[i] == '/' && div(stack))
+		{
             error("invalid division");
+			return ;
+		}
 		if (line[i] == '+' && add(stack))
+		{
             error("invalid addition");
+			return ;
+		}
 		if (line[i] == '-' && sub(stack))
+		{
             error("invalid subtraction");
+			return ;
+		}
 	}
 	if (stack.size() != 1)
 		error("invalid input");
