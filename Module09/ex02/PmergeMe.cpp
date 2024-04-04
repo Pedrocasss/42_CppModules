@@ -53,3 +53,5 @@ PmergeMe::PmergeMe(char **argv)
     std::cout << std::fixed << std::setprecision(5) << "Time to process a range of " << vector.size() << " elements with std::vector: " << vectorTime << " us\n";
     std::cout << std::fixed << std::setprecision(5) << "Time to process a range of " << deque.size() << " elements with std::deque" << ": " << dequeTime << " us\n";
 }
+
+// numbergenerator.org
