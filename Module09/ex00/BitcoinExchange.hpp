@@ -8,8 +8,9 @@
 # include <exception>
 # include <sstream>
 # include <cstdlib>
-#include <iomanip>
-class BitcoinExchange {
+# include <iomanip>
+class BitcoinExchange
+{
 	private:
 		std::string _fileName;
 		std::map<std::string,double> _data;

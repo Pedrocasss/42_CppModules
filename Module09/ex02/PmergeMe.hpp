@@ -33,74 +33,74 @@ public:
     double timeAndSort(T &container)
     {
         clock_t start = clock();
-        fordJohnsonSort(container, 0, container.size() - 1);
+        sortFordJohnson(container);
         return (double)(clock() - start) / CLOCKS_PER_SEC * 1000000;
     }
 
     template <typename T>
-void fordJohnsonSort(T &container, int left, int right)
-{
-    if (left < right)
+    void sortFordJohnson(T &container)
     {
-        // Divide o array em pares e ordena cada par
-            for (int i = left; i < right; i += 1)
-            {
-                if (container[i] > container[i + 1])
-                {
-                    std::swap(container[i], container[i + 1]);
-                }
-            }
+        T copy, smaller;
+        int size = container.size() - 1;
+        int i = 0;
 
-            // Aplica recursivamente para os pares maiores
-            int mid = (left + right) / 2;
-            fordJohnsonSort(container, left, mid);
-            fordJohnsonSort(container, mid + 1, right);
-
-            // Mescla os pares ordenados
-            std::vector<int> merged;
-            int i = left, j = mid + 1;
-            while (i <= mid && j <= right)
-            {
-                if (container[i] <= container[j])
-                {
-                    merged.push_back(container[i]);
-                    i += 1;
-                }
-                else
-                {
-                    merged.push_back(container[j]);
-                    j += 1;
-                }
+        if (container.size() < 2)
+            return ;
+        copy = container;
+        container.clear();
+        while (i < size)
+        {
+            if (copy[i] > copy[i + 1]) {
+                container.push_back(copy[i]);
+                smaller.push_back(copy[i + 1]);
             }
-            while (i <= mid)
-            {
-                merged.push_back(container[i]);
-                i += 1;
+            else {
+                container.push_back(copy[i + 1]);
+                smaller.push_back(copy[i]);
             }
-            while (j <= right)
-            {
-                merged.push_back(container[j]);
-                j += 1;
-            }
-            for (int k = 0; k < static_cast<int>(merged.size()); ++k)
-            {
-                container[left + k] = merged[k];
-            }
-
-            // Insere os elementos restantes na sequência ordenada final em binário
-            for (int i = left + 1; i <= right; i += 1)
-            {
-                typename T::iterator insertionPoint = std::lower_bound(container.begin() + left, container.begin() + i, container[i]);
-                std::rotate(insertionPoint, container.begin() + i, container.begin() + i + 1);
-
-            }
+            i += 2;
         }
+        if (copy.size() % 2)
+            container.push_back(copy[i]);
+        sortFordJohnson(container);
+        binaryJacobsthalInsert(container, smaller);
     }
 
+    template <typename T>
+    int calculateCurrentIndex(const T &merge, int index) {
+        return (jacobsthal[index] < (int)merge.size() ? jacobsthal[index] : merge.size() - 1);
+    }
+
+    template <typename T>
+    typename T::iterator findInsertionPoint(T &base, const T &merge, int current) {
+        return std::lower_bound(base.begin(), base.end(), merge[current]);
+    }
+
+    template <typename T>
+    void insertElementAtPoint(T &base, typename T::iterator where, const T &merge, int current) {
+        base.insert(where, merge[current]);
+    }
+
+    template <typename T>
+    void binaryJacobsthalInsert(T &base, T &merge) {
+        typename T::iterator where;
+        int index = 0, current;
+
+        do {
+            index++;
+            current = calculateCurrentIndex(merge, index);
+            while (current > jacobsthal[index - 1]) {
+                where = findInsertionPoint(base, merge, current);
+                insertElementAtPoint(base, where, merge, current);
+                current--;
+            }
+        } while (jacobsthal[index] < (int)merge.size());
+    }
 
 private:
     std::vector<int> vector;
     std::deque<int> deque;
+    static const int jacobsthal[35];
 };
 
 #endif

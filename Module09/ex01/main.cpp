@@ -8,6 +8,9 @@ int	main(int argc, char **argv)
 		return 0;
 	}
 	if (checkLine(argv[1]))
+	{
 		error("Invalid input");
+		return 1;
+	}
 	calculate(argv[1]);
 }
