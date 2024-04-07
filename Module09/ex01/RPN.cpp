@@ -52,6 +52,8 @@ int	div(std::stack<int> &stack)
 	stack.pop();
 	int	top2 = stack.top();
 	stack.pop();
+	if (top == 0)
+		return 1;
 	top2 /= top;
 	stack.push(top2);
 	return 0;
@@ -120,6 +122,6 @@ void	calculate(std::string line)
 
 void error(std::string message)
 {
-    std::cout << "Error: " << message << std::endl;
+    std::cerr << "Error: " << message << std::endl;
     return ;
 }
